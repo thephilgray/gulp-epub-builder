@@ -1,7 +1,7 @@
 const fs = require('fs');
 const constants = require('./constants');
 
-class SharedAPI {
+class AssetsAPI {
   constructor() {
     this.assets = {};
   }
@@ -91,6 +91,11 @@ class SharedAPI {
   getAssets() {
     return this.assets;
   }
+
+  resetAssets(done) {
+    this.assets = {};
+    done();
+  }
 }
 
-module.exports = new SharedAPI();
+module.exports = new AssetsAPI();

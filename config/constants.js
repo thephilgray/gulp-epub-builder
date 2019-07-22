@@ -4,6 +4,7 @@ const BUILDS_PATH = 'build';
 const DIST_PATH = 'dist';
 const SOURCE_PATH = 'src';
 const CONTENT_DIRNAME = 'OEBPS';
+const PAGE_PREFIX = 'PAGE';
 const CONTENT_PATH = `${BUILDS_PATH}/${CONTENT_DIRNAME}`;
 const DATA_PATH = `${SOURCE_PATH}/data`;
 const PAGE_TEMPLATES_PATH = `${SOURCE_PATH}/pages`;

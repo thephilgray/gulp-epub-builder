@@ -2,13 +2,13 @@ const gulp = require('gulp');
 const constants = require('../constants');
 const assetsParser = require('../plugins/gulp-assets-parser');
 
-module.exports = sharedAPI => {
+module.exports = assetsAPI => {
   return function media(done) {
     return gulp
       .src(constants.MEDIA_PATHS)
       .pipe(
         assetsParser({
-          cache: sharedAPI
+          cache: assetsAPI
         })
       )
       .pipe(gulp.dest(constants.CONTENT_PATH));

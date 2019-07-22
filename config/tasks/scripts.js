@@ -6,7 +6,7 @@ const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const assetsParser = require('../plugins/gulp-assets-parser');
 
-module.exports = sharedAPI =>
+module.exports = assetsAPI =>
   function scripts(done) {
     return gulp
       .src(constants.SCRIPT_PATHS)
@@ -30,7 +30,7 @@ module.exports = sharedAPI =>
       .pipe(
         assetsParser({
           dependencies: constants.EXTENSIONS_MAP.map(ext => ext.name),
-          cache: sharedAPI
+          cache: assetsAPI
         })
       )
       .pipe(gulp.dest(constants.CONTENT_PATH));

@@ -7,9 +7,9 @@ const prettier = require('@o2team/gulp-prettier-eslint');
 const constants = require('../constants');
 const assetsParser = require('../plugins/gulp-assets-parser');
 
-module.exports = sharedAPI => {
+module.exports = assetsAPI => {
   return function pages(done) {
-    const { book, pages } = sharedAPI.getBookAndPagesData();
+    const { book, pages } = assetsAPI.getBookAndPagesData();
 
     pages.forEach(page => {
       return gulp
@@ -27,7 +27,7 @@ module.exports = sharedAPI => {
         .pipe(
           assetsParser({
             dependencies: constants.EXTENSIONS_MAP.map(ext => ext.name),
-            cache: sharedAPI
+            cache: assetsAPI
           })
         )
         .pipe(prettier())

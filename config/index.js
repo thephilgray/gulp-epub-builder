@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const sharedAPI = require('./sharedAPI');
+const assets = require('./assetsAPI');
 const pages = require('./tasks/pages');
 const scripts = require('./tasks/scripts');
 const styles = require('./tasks/styles');
@@ -13,11 +13,12 @@ const constants = require('./constants');
 
 const buildContent = gulp.series(
   clean,
-  pages(sharedAPI),
-  scripts(sharedAPI),
-  styles(sharedAPI),
-  media(sharedAPI),
-  package(sharedAPI)
+  assets.resetAssets.bind(assets), // reset this.assets every build
+  pages(assets),
+  scripts(assets),
+  styles(assets),
+  media(assets),
+  package(assets)
 );
 
 const build = gulp.series(init, buildContent);
@@ -33,7 +34,7 @@ const dev = gulp.series(
   devServer,
   gulp.parallel(watchPug, watchLess, watchBabel, watchMedia, watchData)
 );
-const publish = gulp.series(build, zip(sharedAPI));
+const publish = gulp.series(build, zip(assets));
 
 module.exports = {
   default: build,

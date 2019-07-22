@@ -10,7 +10,7 @@ const assetsParser = require('../plugins/gulp-assets-parser');
 const LESS_OPTIONS = {};
 const POSTCSS_PLUGINS = [autoprefixer()];
 
-module.exports = sharedAPI =>
+module.exports = assetsAPI =>
   function styles(done) {
     return gulp
       .src(constants.STYLESHEET_PATHS)
@@ -20,7 +20,7 @@ module.exports = sharedAPI =>
       .pipe(
         assetsParser({
           dependencies: constants.EXTENSIONS_MAP.map(ext => ext.name),
-          cache: sharedAPI
+          cache: assetsAPI
         })
       )
       .pipe(gulp.dest(constants.CONTENT_PATH));

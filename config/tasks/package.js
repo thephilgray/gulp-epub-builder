@@ -4,10 +4,10 @@ const rename = require('gulp-rename');
 const uuidv5 = require('uuid/v5');
 const constants = require('../constants');
 
-module.exports = sharedAPI => {
+module.exports = assetsAPI => {
   return function package(done) {
-    const { book, pages } = sharedAPI.getBookAndPagesData();
-    const assets = sharedAPI.getAssetsArray();
+    const { book, pages } = assetsAPI.getBookAndPagesData();
+    const assets = assetsAPI.getAssetsArray();
 
     return gulp
       .src(constants.PACKAGE_TEMPLATE_PATH)
