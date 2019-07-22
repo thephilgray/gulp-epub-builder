@@ -28,7 +28,6 @@
     "gulp-pug": "^4.0.1",
     "gulp-purgecss": "^1.2.0",
     "gulp-rename": "^1.4.0",
-    "i": "^0.3.6",
     "launch-epub": "^1.1.2",
     "minimist": "^1.2.0",
     "npm": "^6.10.1",
@@ -37,8 +36,6 @@
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "through2": "^3.0.1",
-    "uuidv5": "^1.0.0",
-    "vinyl": "^2.2.0",
-    "xml-js": "^1.6.11"
+    "uuidv5": "^1.0.0"
   }
 }
