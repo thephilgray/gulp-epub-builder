@@ -1,6 +1,6 @@
-const gulp = require("gulp");
-const constants = require("../constants");
-const assetsParser = require("../plugins/gulp-assets-parser");
+const gulp = require('gulp');
+const constants = require('../constants');
+const assetsParser = require('../plugins/gulp-assets-parser');
 
 module.exports = sharedAPI => {
   return function media(done) {

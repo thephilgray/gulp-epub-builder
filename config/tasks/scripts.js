@@ -1,27 +1,31 @@
-const gulp = require("gulp");
-const constants = require("../constants");
-const rollup = require("gulp-better-rollup");
-const babel = require("rollup-plugin-babel");
-const resolve = require("rollup-plugin-node-resolve");
-const commonjs = require("rollup-plugin-commonjs");
-const assetsParser = require("../plugins/gulp-assets-parser");
+const gulp = require('gulp');
+const constants = require('../constants');
+const rollup = require('gulp-better-rollup');
+const babel = require('rollup-plugin-babel');
+const resolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
+const assetsParser = require('../plugins/gulp-assets-parser');
 
 module.exports = sharedAPI =>
   function scripts(done) {
     return gulp
       .src(constants.SCRIPT_PATHS)
       .pipe(
-        rollup({
-          plugins: [
-            babel({
-              babelrc: false,
-              presets: [["@babel/preset-env"]]
-            }),
-            resolve(),
-            commonjs()
-          ],
-          format: "iife"
-        })
+        rollup(
+          {
+            plugins: [
+              resolve(),
+              commonjs({
+                exclude: ['node_modules/lodash-es/**']
+              }),
+              babel({
+                presets: [['@babel/preset-env']],
+                exclude: 'node_modules/**'
+              })
+            ]
+          },
+          'iife'
+        )
       )
       .pipe(
         assetsParser({

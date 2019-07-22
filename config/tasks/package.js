@@ -1,8 +1,8 @@
-const gulp = require("gulp");
-const pug = require("gulp-pug");
-const rename = require("gulp-rename");
-const uuidv5 = require("uuid/v5");
-const constants = require("../constants");
+const gulp = require('gulp');
+const pug = require('gulp-pug');
+const rename = require('gulp-rename');
+const uuidv5 = require('uuid/v5');
+const constants = require('../constants');
 
 module.exports = sharedAPI => {
   return function package(done) {
@@ -13,7 +13,7 @@ module.exports = sharedAPI => {
       .src(constants.PACKAGE_TEMPLATE_PATH)
       .pipe(
         pug({
-          doctype: "xml",
+          doctype: 'xml',
           pretty: true,
           locals: {
             assets,
@@ -21,8 +21,8 @@ module.exports = sharedAPI => {
               ...book,
               modified: constants.MODIFIED_DATE,
               identifier: {
-                text: uuidv5(book.title, constants.IDENTIFIER_NAMESPACE),
-                scheme: "URN"
+                text: uuidv5(book.name, constants.IDENTIFIER_NAMESPACE),
+                scheme: 'URN'
               }
             },
             pages

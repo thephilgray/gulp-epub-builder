@@ -1,5 +1,7 @@
 {
+  "name": "ebook-1",
   "title": "ebook",
+  "language": "en-US",
   "subtitle": "subtitle",
   "cover": {
     "src": "media/cover.jpg",

@@ -1,5 +1,5 @@
-const fs = require("fs");
-const constants = require("./constants");
+const fs = require('fs');
+const constants = require('./constants');
 
 class SharedAPI {
   constructor() {
@@ -11,7 +11,7 @@ class SharedAPI {
   }
 
   getBookData() {
-    console.log("getBookData!!!");
+    console.log('getBookData!!!');
     return JSON.parse(fs.readFileSync(constants.METADATA_PATH));
   }
 
@@ -21,18 +21,20 @@ class SharedAPI {
 
   addAsset(assetId, assetHref) {
     const { mediaType } = constants.EXTENSIONS_MAP.find(
-      ext => ext.name === assetHref.split(".").pop()
+      ext => ext.name === assetHref.split('.').pop()
     );
     const pages = this.getPagesData();
     const currentPage = pages.find(p => p.id === assetId) || {};
+    console.log(currentPage);
 
     this.assets[assetId] = {
       href: assetHref,
       manifest: {
-        "media-type": mediaType,
+        'media-type': mediaType,
         ...currentPage.manifest
       }
     };
+    console.log(this.assets[assetId]);
     return this.assets[assetId];
   }
 
@@ -57,13 +59,13 @@ class SharedAPI {
       asset.dependencies.push(dependency);
       this.assets[assetId].dependencies = asset.dependencies;
     }
-    const ext = dependency.split(".").pop();
+    const ext = dependency.split('.').pop();
 
-    if (ext === "js") {
-      this.addProperty(assetId, "scripted");
+    if (ext === 'js') {
+      this.addProperty(assetId, 'scripted');
     }
-    if (ext === "svg") {
-      this.addProperty(assetId, "svg");
+    if (ext === 'svg') {
+      this.addProperty(assetId, 'svg');
     }
     return asset;
   }

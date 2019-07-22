@@ -35,6 +35,6 @@
         spine
             each page in pages
                 if(page.spine && page.spine.linear)
-                    itemref(idref=page.id + '.xhtml' linear=page.spine.linear)/
+                    itemref(idref=page.id linear=page.spine.linear)/
                 else
-                    itemref(idref=page.id + '.xhtml')/
+                    itemref(idref=page.id)/

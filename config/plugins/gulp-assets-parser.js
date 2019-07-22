@@ -1,4 +1,4 @@
-const through = require("through2");
+const through = require('through2');
 // var Vinyl = require("vinyl");
 
 /** largely based on gulp-file-assets by @Lanfei */
@@ -8,9 +8,10 @@ const through = require("through2");
 module.exports = function({ cache, dependencies }) {
   const ASSETS_RE = /([^'"# ()?]+\.(EXT))\b/gi;
   const removeComments = str =>
-    str.replace(/\/\*[\s\S]*?\*\/|([^:]|^)\/\/.*$/gm, "");
+    str.replace(/\/\*[\s\S]*?\*\/|([^:]|^)\/\/.*$/gm, '');
 
   const isLocal = url => !/^(https?:)?\/\//.test(url);
+  const hasSvgTag = str => /(<svg)([^<]*|[^>]*)/gm.test(str);
 
   // id, href, assets
 
@@ -32,21 +33,24 @@ module.exports = function({ cache, dependencies }) {
     // if it's code, store it and find any
     if (dependencies) {
       const allDeps = cache.getAllDependencies();
-      if (extname !== ".xhtml" && !allDeps.includes(basename)) {
+      if (extname !== '.xhtml' && !allDeps.includes(basename)) {
         return;
       }
       currentAsset = cache.addAsset(basename, relative);
       const pattern = new RegExp(
-        ASSETS_RE.source.replace("EXT", dependencies.join("|")),
-        "ig"
+        ASSETS_RE.source.replace('EXT', dependencies.join('|')),
+        'ig'
       );
       const contentsWithoutComments = removeComments(contents.toString());
       const results = contentsWithoutComments.match(pattern);
       if (results && results.length > 0) {
         results.forEach(result => {
           if (!isLocal(result)) return;
-          cache.addDependency(basename, result.split("/").pop());
+          cache.addDependency(basename, result.split('/').pop());
         });
+      }
+      if (hasSvgTag(contentsWithoutComments)) {
+        cache.addProperty(basename, 'svg');
       }
     }
     // only include media items that are already stored as dependencies

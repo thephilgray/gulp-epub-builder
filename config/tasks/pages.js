@@ -1,11 +1,11 @@
 // const fs = require("fs");
 // const path = require("path");
-const gulp = require("gulp");
-const pug = require("gulp-pug");
-const rename = require("gulp-rename");
-const prettier = require("@o2team/gulp-prettier-eslint");
-const constants = require("../constants");
-const assetsParser = require("../plugins/gulp-assets-parser");
+const gulp = require('gulp');
+const pug = require('gulp-pug');
+const rename = require('gulp-rename');
+const prettier = require('@o2team/gulp-prettier-eslint');
+const constants = require('../constants');
+const assetsParser = require('../plugins/gulp-assets-parser');
 
 module.exports = sharedAPI => {
   return function pages(done) {
@@ -18,11 +18,12 @@ module.exports = sharedAPI => {
           pug({
             locals: {
               book,
+              pages,
               ...page.data
             }
           })
         )
-        .pipe(rename(`pages/${page.id}.xhtml`))
+        .pipe(rename(`pages/${page.id}`))
         .pipe(
           assetsParser({
             dependencies: constants.EXTENSIONS_MAP.map(ext => ext.name),

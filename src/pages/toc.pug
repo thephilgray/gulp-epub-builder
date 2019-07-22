@@ -1,0 +1,14 @@
+extends ../templates/layout
+append variables
+    - var epubTypes = ['frontmatter']
+    - var classes='toc'
+append head
+    style.
+        h1{color:red;}
+block content
+    h1=title
+    nav(role='doc-toc' epub:type="toc")
+        ol
+            each page in pages
+                li
+                    a(href=page.id)=page.data.title

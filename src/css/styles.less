@@ -1,13 +1,22 @@
-@red: #900;
-@yellow: #ff5;
+@white: #ffa;
 
 .page {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(@red, @yellow);
+  background: black;
+  color: @white;
+  height: 99vh;
+  background-image: url('../media/moon.jpg');
 }
 
-.page {
-  background-image: url("../media/moon.jpg");
+.toc {
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li a {
+    color: @white;
+  }
 }
