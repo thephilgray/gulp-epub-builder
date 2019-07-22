@@ -1,0 +1,22 @@
+[
+  {
+    "id": "cover",
+    "template": "cover",
+    "data": {
+      "title": "Cover"
+    },
+    "manifest": {
+      "properties": ["cover"]
+    },
+    "spine": {
+      "linear": "no"
+    }
+  },
+  {
+    "id": "p001",
+    "template": "bodymatter",
+    "data": {
+      "title": "Testing & testing"
+    }
+  }
+]

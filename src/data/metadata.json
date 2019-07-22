@@ -1,0 +1,8 @@
+{
+  "title": "ebook",
+  "subtitle": "subtitle",
+  "cover": {
+    "src": "media/cover.jpg",
+    "description": "a book cover"
+  }
+}
