@@ -1,1 +1,19 @@
-[{"id":"000.xhtml","template":"cover","data":{"title":"Cover"},"spine":{"linear":"no"}},{"id":"001.xhtml","template":"toc","data":{"title":"Table of Contents"},"manifest":{"properties":["nav"]}},{"id":"002.xhtml","template":"bodymatter","data":{"title":"Testing & testing"}}]
+[
+  {
+    "id": "000.xhtml",
+    "template": "cover",
+    "data": { "title": "Cover" },
+    "spine": { "linear": "no" }
+  },
+  {
+    "id": "001.xhtml",
+    "template": "toc",
+    "data": { "title": "Table of Contents" },
+    "manifest": { "properties": ["nav"] }
+  },
+  {
+    "id": "002.xhtml",
+    "template": "bodymatter",
+    "data": { "title": "Testing & testing" }
+  }
+]

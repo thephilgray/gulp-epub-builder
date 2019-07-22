@@ -2,6 +2,8 @@
     package(version="3.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" prefix="rendition: http://www.idpf.org/vocab/rendition/# ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#")
         metadata(xmlns:dc="http://purl.org/dc/elements/1.1/")
             dc:title( id="title")=book.title
+            if book.identifier && book.identifier.text
+                dc:identifier( id="bookid")=book.identifier.text
             if book.date
                 dc:date=book.date
             else if book.modified
@@ -10,25 +12,22 @@
                 dc:type=book.type
             if book.language
                 dc:language=book.language
-            if book.modified
-                meta(property="dcterms:modified")=book.modified
-            dc:identifier( id="bookid")=book.identifier.text
-            meta(name="cover" content="img-cover")/
-            meta(refines="#bookid" property="identifier-type" scheme="xsd:string")=book.identifier.scheme
+            if book.publisher
+                dc:publisher= book.publisher
             if book.creator
                 dc:creator=book.creator
             if book.creators
                 each item in book.creators
                     dc:creator=item.text
-            if book.publisher
-                dc:publisher= book.publisher
+            if book.cover && book.cover.src
+                meta(name="cover" content=book.cover.src.split('/').pop())/
+            if book.identifier && book.identifier.scheme
+                meta(refines="#bookid" property="identifier-type" scheme="xsd:string")=book.identifier.scheme
+            if book.modified
+                meta(property="dcterms:modified")=book.modified
         manifest
-            //- item(id="toc" href="xhtml/toc.xhtml" media-type="application/xhtml+xml" properties="nav")/
-            //- item(id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml")/
-            item(id="img-cover" href=book.cover.src media-type="image/jpeg" properties="cover-image")/
             each asset in assets
-                if asset.href == book.cover.src
-                else if asset.manifest.properties
+                if asset.manifest.properties
                     item(id=asset.id href=asset.href media-type=asset.manifest['media-type'] properties=asset.manifest.properties.join(' '))/
                 else
                     item(id=asset.id href=asset.href media-type=asset.manifest['media-type'])/

@@ -23,9 +23,8 @@ class AssetsAPI {
     const { mediaType } = constants.EXTENSIONS_MAP.find(
       ext => ext.name === assetHref.split('.').pop()
     );
-    const pages = this.getPagesData();
+    const { pages, book } = this.getBookAndPagesData();
     const currentPage = pages.find(p => p.id === assetId) || {};
-    console.log(currentPage);
 
     this.assets[assetId] = {
       href: assetHref,
@@ -34,7 +33,11 @@ class AssetsAPI {
         ...currentPage.manifest
       }
     };
-    console.log(this.assets[assetId]);
+
+    if (book.cover && book.cover.src && book.cover.src === assetHref) {
+      this.addProperty(assetId, 'cover-image');
+    }
+
     return this.assets[assetId];
   }
 
