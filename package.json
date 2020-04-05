@@ -30,7 +30,7 @@
     "gulp-purgecss": "^1.2.0",
     "gulp-rename": "^1.4.0",
     "launch-epub": "^1.1.2",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.3",
     "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",
